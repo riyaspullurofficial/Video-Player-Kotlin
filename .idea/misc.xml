@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../.gradle/caches/transforms-3/64c79b62437e6acc5d15e196c3e0d4cb/transformed/exoplayer-ui-2.16.1/res/layout/exo_player_control_view.xml" value="0.2046875" />
+        <entry key="../../.gradle/caches/transforms-3/64c79b62437e6acc5d15e196c3e0d4cb/transformed/exoplayer-ui-2.16.1/res/layout/exo_player_view.xml" value="0.2046875" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.153" />
         <entry key="app/src/main/res/drawable/ic_folder.xml" value="0.153" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.153" />
@@ -13,6 +15,7 @@
         <entry key="app/src/main/res/layout/activity_folders.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_player.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/custom_control_view.xml" value="0.2046875" />
         <entry key="app/src/main/res/layout/folders_view.xml" value="0.18541666666666667" />
         <entry key="app/src/main/res/layout/fragment_floder.xml" value="0.19270833333333334" />
         <entry key="app/src/main/res/layout/fragment_folder.xml" value="0.18541666666666667" />
