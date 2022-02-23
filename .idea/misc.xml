@@ -6,10 +6,15 @@
         <entry key="../../.gradle/caches/transforms-3/64c79b62437e6acc5d15e196c3e0d4cb/transformed/exoplayer-ui-2.16.1/res/layout/exo_player_control_view.xml" value="0.2046875" />
         <entry key="../../.gradle/caches/transforms-3/64c79b62437e6acc5d15e196c3e0d4cb/transformed/exoplayer-ui-2.16.1/res/layout/exo_player_view.xml" value="0.2046875" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.153" />
+        <entry key="app/src/main/res/drawable/fullscreen_icon.xml" value="0.175" />
         <entry key="app/src/main/res/drawable/ic_folder.xml" value="0.153" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.153" />
         <entry key="app/src/main/res/drawable/ic_videolib.xml" value="0.153" />
         <entry key="app/src/main/res/drawable/navdrawerbackgroundcolor.xml" value="0.153" />
+        <entry key="app/src/main/res/drawable/pause_icon.xml" value="0.175" />
+        <entry key="app/src/main/res/drawable/play_icon.xml" value="0.175" />
+        <entry key="app/src/main/res/drawable/repeat_icon.xml" value="0.175" />
+        <entry key="app/src/main/res/drawable/repeate_true_icon.xml" value="0.175" />
         <entry key="app/src/main/res/drawable/scrollbar_icon.xml" value="0.153" />
         <entry key="app/src/main/res/drawable/theme_icon.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_folders.xml" value="0.22" />

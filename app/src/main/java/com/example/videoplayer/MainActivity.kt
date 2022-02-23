@@ -5,6 +5,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.provider.MediaStore
 import android.util.Log
 import android.view.MenuItem
@@ -12,6 +13,7 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.videoplayer.databinding.ActivityMainBinding
 import java.io.File
 import java.time.Duration
@@ -22,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         lateinit var videoList: ArrayList<Video>
         lateinit var folderList:ArrayList<Folder>
     }
+    lateinit var swipeRefreshLayout: SwipeRefreshLayout
     lateinit var binding:ActivityMainBinding
     private lateinit var toggle:ActionBarDrawerToggle
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,6 +78,19 @@ class MainActivity : AppCompatActivity() {
             }
             return@setNavigationItemSelectedListener true
         }
+        swipeRefreshLayout=binding.swipeRefresh
+        swipeRefreshLayout.setOnRefreshListener {
+            folderList=ArrayList()
+            videoList=getAllVideos()
+            setFragment(VideoFragment())
+
+            Handler().postDelayed(Runnable {
+                swipeRefreshLayout.isRefreshing = false
+            }, 4000)
+        }
+
+
+
     }
     private fun setFragment(fragment: Fragment){
         val transaction =supportFragmentManager.beginTransaction()
@@ -158,4 +174,6 @@ class MainActivity : AppCompatActivity() {
                 cursor?.close()
         return tempList
     }
+
+
 }

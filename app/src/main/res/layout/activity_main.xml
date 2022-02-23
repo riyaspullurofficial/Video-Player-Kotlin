@@ -7,36 +7,40 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
     tools:context=".MainActivity">
-
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-        <FrameLayout
-            android:id="@+id/fragmentFL"
+        android:layout_height="match_parent">
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNav"
-            android:background="@color/black"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            app:menu="@menu/bottom_nav"
-            app:itemIconTint="@color/cool_pink"
-            android:backgroundTint="@color/black"
-            app:itemTextColor="@color/white"
-            app:itemTextAppearanceActive="@color/black"
-            app:itemTextAppearanceInactive="@android:color/darker_gray"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <FrameLayout
+                android:id="@+id/fragmentFL"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomNav"
+                android:background="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                app:menu="@menu/bottom_nav"
+                app:itemIconTint="@color/cool_pink"
+                android:backgroundTint="@color/black"
+                app:itemTextColor="@color/white"
+                app:itemTextAppearanceActive="@color/black"
+                app:itemTextAppearanceInactive="@android:color/darker_gray"/>
 
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navView"
