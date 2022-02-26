@@ -4,7 +4,9 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.util.Log
+import android.view.View
 import android.view.Window
 import android.view.WindowInsets
 import android.view.WindowManager
@@ -12,18 +14,23 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.example.videoplayer.databinding.ActivityPlayerBinding
+import com.google.android.exoplayer2.C
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
+import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
 import java.lang.Exception
 
 class PlayerActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPlayerBinding
+    private lateinit var runnable: Runnable
     companion object{
        private lateinit var player:SimpleExoPlayer
         lateinit var playerList:ArrayList<Video>
         var position:Int=-1
         var repeat:Boolean=false
+        var isFullScreen:Boolean= false
+        var isLocked:Boolean=false
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,7 +65,6 @@ class PlayerActivity : AppCompatActivity() {
             }
     }
     private fun initializeBinding(){
-
         binding.backBtn.setOnClickListener {
             finish()
         }
@@ -81,7 +87,31 @@ class PlayerActivity : AppCompatActivity() {
                     player.repeatMode=Player.REPEAT_MODE_ONE
                     binding.repeatBtn.setImageResource(R.drawable.repeate_true_icon)
                 }
-
+        }
+        binding.fullScreenBtn.setOnClickListener {
+            if(isFullScreen){
+                isFullScreen=false
+                playInFullScreen(enable = isFullScreen)
+            }else{
+                isFullScreen=true
+                playInFullScreen(enable = isFullScreen)
+            }
+        }
+        binding.lockBtn.setOnClickListener {
+            if (isLocked){
+                //hiding
+                isLocked=false
+                binding.playerView.hideController()
+                binding.playerView.useController=false
+                binding.lockBtn.setImageResource(R.drawable.lock_closed_icon)
+            }
+            else{
+                //for showing
+                isLocked=true
+                binding.playerView.showController()
+                binding.playerView.useController=true
+                binding.lockBtn.setImageResource(R.drawable.lock_open_icon)
+            }
         }
     }
     private fun createPlayer(){
@@ -94,13 +124,14 @@ class PlayerActivity : AppCompatActivity() {
         player.setMediaItem(mediaItem)
         player.prepare()
         playVideo()
-
         player.addListener(object :Player.Listener{
             override fun onPlaybackStateChanged(playbackState: Int) {
                 super.onPlaybackStateChanged(playbackState)
                 if (playbackState == Player.STATE_ENDED) nextPrevVideo()
             }
         })
+        playInFullScreen(enable = isFullScreen)
+        setVisibility()
     }
     override fun onDestroy() {
         super.onDestroy()
@@ -135,5 +166,28 @@ class PlayerActivity : AppCompatActivity() {
             }
         }
     }
-
+    private fun playInFullScreen(enable:Boolean){
+        if (enable){
+            binding.playerView.resizeMode=AspectRatioFrameLayout.RESIZE_MODE_FILL
+            player.videoScalingMode= C.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING
+            binding.fullScreenBtn.setImageResource(R.drawable.fullscreen_exit_icon)
+        }else{
+            binding.playerView.resizeMode=AspectRatioFrameLayout.RESIZE_MODE_FIT
+            player.videoScalingMode= C.VIDEO_SCALING_MODE_SCALE_TO_FIT
+            binding.fullScreenBtn.setImageResource(R.drawable.fullscreen_icon)
+        }
+    }
+    private fun setVisibility(){
+        runnable= Runnable {
+            if (binding.playerView.isControllerVisible) changeVisibility(View.VISIBLE)
+            else changeVisibility(View.GONE)
+            Handler(Looper.getMainLooper()).postDelayed(runnable,1000)
+        }
+        Handler(Looper.getMainLooper()).postDelayed(runnable,0)
+    }
+    private fun changeVisibility(visibility:Int){
+        binding.topController.visibility=visibility
+        binding.bottomController.visibility=visibility
+        binding.playPauseBtn.visibility=visibility
+    }
 }

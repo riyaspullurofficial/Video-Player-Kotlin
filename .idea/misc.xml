@@ -10,6 +10,7 @@
         <entry key="app/src/main/res/drawable/ic_folder.xml" value="0.153" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.153" />
         <entry key="app/src/main/res/drawable/ic_videolib.xml" value="0.153" />
+        <entry key="app/src/main/res/drawable/lock_closed_icon.xml" value="0.175" />
         <entry key="app/src/main/res/drawable/navdrawerbackgroundcolor.xml" value="0.153" />
         <entry key="app/src/main/res/drawable/pause_icon.xml" value="0.175" />
         <entry key="app/src/main/res/drawable/play_icon.xml" value="0.175" />
@@ -25,6 +26,7 @@
         <entry key="app/src/main/res/layout/fragment_floder.xml" value="0.19270833333333334" />
         <entry key="app/src/main/res/layout/fragment_folder.xml" value="0.18541666666666667" />
         <entry key="app/src/main/res/layout/fragment_video.xml" value="0.2078125" />
+        <entry key="app/src/main/res/layout/more_feature.xml" value="0.2046875" />
         <entry key="app/src/main/res/layout/nav_header.xml" value="0.2078125" />
         <entry key="app/src/main/res/layout/video_view.xml" value="0.2078125" />
         <entry key="app/src/main/res/menu-v26/navigation_menu.xml" value="0.2078125" />

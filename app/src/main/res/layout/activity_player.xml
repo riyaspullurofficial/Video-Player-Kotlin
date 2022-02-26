@@ -7,6 +7,7 @@
     android:background="@color/black"
     tools:context=".PlayerActivity">
 
+
     <com.google.android.exoplayer2.ui.PlayerView
         android:id="@+id/playerView"
         android:layout_width="match_parent"
@@ -22,63 +23,80 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/topController"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#42000000">
 
-            <ImageButton
-                android:id="@+id/backBtn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:backgroundTint="@android:color/transparent"
-                android:contentDescription="@string/back_btn"
-                android:src="@drawable/back_icon"
+            <LinearLayout
+                android:id="@+id/topController"
+                android:layout_width="320dp"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.011"
+                app:layout_constraintHorizontal_bias="0.058"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
-                app:tint="@color/white" />
+                app:layout_constraintVertical_bias="1.0">
 
-            <TextView
-                android:id="@+id/videoTitle"
-                android:layout_width="213dp"
-                android:layout_height="31dp"
-                android:layout_margin="10dp"
-                android:ellipsize="marquee"
-                android:gravity="center"
-                android:marqueeRepeatLimit="marquee_forever"
-                android:singleLine="true"
-                android:text="@string/video_name"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.39"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                <ImageButton
+                    android:id="@+id/backBtn"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="@string/back_btn"
+                    android:src="@drawable/back_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.011"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:tint="@color/white" />
+
+                <TextView
+                    android:id="@+id/videoTitle"
+                    android:layout_width="200dp"
+                    android:layout_height="31dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="1dp"
+                    android:ellipsize="marquee"
+                    android:gravity="center"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:singleLine="true"
+                    android:text="@string/video_name"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.39"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <ImageButton
+                    android:layout_width="52dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="1dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="@string/menu"
+                    android:padding="2dp"
+                    android:src="@drawable/menu_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.891"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:tint="@color/white" />
+
+
+            </LinearLayout>
 
             <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="10dp"
-                android:backgroundTint="@android:color/transparent"
-                android:contentDescription="@string/menu"
-                android:padding="10dp"
-                android:src="@drawable/menu_icon"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.891"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
-                app:tint="@color/white" />
-
-            <ImageButton
+                android:id="@+id/lockBtn"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:backgroundTint="@android:color/transparent"
@@ -86,11 +104,12 @@
                 android:src="@drawable/lock_open_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.997"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintVertical_bias="1.0"
                 app:tint="@color/white" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -113,7 +132,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/white" />
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomController"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#42000000"
@@ -169,19 +191,20 @@
             app:layout_constraintVertical_bias="1.0"
             app:tint="@color/white" />
 
-       <ImageButton
-           android:id="@+id/repeatBtn"
-           android:layout_width="50dp"
-           android:layout_height="50dp"
-           android:backgroundTint="@android:color/transparent"
-           android:contentDescription="@string/repeat_btn"
-           android:src="@drawable/repeat_icon"
-           app:layout_constraintBottom_toBottomOf="parent"
-           app:layout_constraintEnd_toEndOf="parent"
-           app:layout_constraintHorizontal_bias="0.516"
-           app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintTop_toTopOf="parent"
-           app:layout_constraintVertical_bias="1.0"/>
+        <ImageButton
+            android:id="@+id/repeatBtn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:backgroundTint="@android:color/transparent"
+            android:contentDescription="@string/repeat_btn"
+            android:src="@drawable/repeat_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.516"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
