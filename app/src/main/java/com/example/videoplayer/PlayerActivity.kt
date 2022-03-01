@@ -1,36 +1,45 @@
 package com.example.videoplayer
 
+import android.annotation.SuppressLint
+import android.graphics.drawable.ColorDrawable
+import android.opengl.Visibility
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import android.view.View
-import android.view.Window
-import android.view.WindowInsets
-import android.view.WindowManager
+import android.view.*
+import android.widget.Toast
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.example.videoplayer.databinding.ActivityPlayerBinding
-import com.google.android.exoplayer2.C
-import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.Player
-import com.google.android.exoplayer2.SimpleExoPlayer
+import com.example.videoplayer.databinding.MoreFeatureBinding
+import com.example.videoplayer.databinding.SpeedDialogBinding
+import com.google.android.exoplayer2.*
+import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.lang.Exception
+import java.text.DecimalFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class PlayerActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPlayerBinding
     private lateinit var runnable: Runnable
+    private var isSubTitle:Boolean=true
+    private var moreTime:Int=0
     companion object{
-       private lateinit var player:SimpleExoPlayer
+       private lateinit var player:ExoPlayer
         lateinit var playerList:ArrayList<Video>
         var position:Int=-1
         var repeat:Boolean=false
         var isFullScreen:Boolean= false
         var isLocked:Boolean=false
+        lateinit var trackSelector:DefaultTrackSelector
+        private var speed:Float = 1.0f
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +58,22 @@ class PlayerActivity : AppCompatActivity() {
         }
         initializeLayout()
         initializeBinding()
+        binding.forwardFL.setOnClickListener(DoubleClickListener(callback = object :DoubleClickListener.Callback{
+            override fun doubleClicked() {
+                binding.playerView.showController()
+                binding.forwardBtn.visibility=View.VISIBLE
+                player.seekTo(player.currentPosition + 10000)
+                moreTime=0
+            }
+        }))
+        binding.rewindFL.setOnClickListener(DoubleClickListener(callback = object :DoubleClickListener.Callback{
+            override fun doubleClicked() {
+                binding.playerView.showController()
+                binding.rewindBtn.visibility=View.VISIBLE
+                player.seekTo(player.currentPosition - 10000)
+                moreTime=0
+            }
+        }))
     }
     private fun initializeLayout(){
             when(intent.getStringExtra("class")){
@@ -62,8 +87,14 @@ class PlayerActivity : AppCompatActivity() {
                     playerList.addAll(FoldersActivity.currentFolderVideos)
                     createPlayer()
                 }
+                "SearchVideos"->{
+                    playerList= ArrayList()
+                    playerList.addAll(MainActivity.searchList)
+                    createPlayer()
+                }
             }
     }
+    @SuppressLint("SetTextI18n")
     private fun initializeBinding(){
         binding.backBtn.setOnClickListener {
             finish()
@@ -113,12 +144,86 @@ class PlayerActivity : AppCompatActivity() {
                 binding.lockBtn.setImageResource(R.drawable.lock_open_icon)
             }
         }
+        binding.moreFeatures.setOnClickListener {
+           pauseVideo()
+            val customDialog=LayoutInflater.from(this).inflate(R.layout.more_feature,binding.root,false)
+            val bindingMF=MoreFeatureBinding.bind(customDialog)
+            val dialog=MaterialAlertDialogBuilder(this).setView(customDialog)
+                .setOnCancelListener{playVideo()}
+                .setBackground(ColorDrawable(0x80000000.toInt()))
+                .create()
+            dialog.show()
+            bindingMF.audioTrack.setOnClickListener {
+                dialog.dismiss()
+                playVideo()
+                val audioTrack=ArrayList<String>()
+                for (i in 0 until player.currentTrackGroups.length){
+                    if (player.currentTrackGroups.get(i).getFormat(0).selectionFlags==C.SELECTION_FLAG_DEFAULT){
+                        audioTrack.add(Locale(player.currentTrackGroups.get(i).getFormat(0).language.toString()).displayLanguage)
+                    }
+                }
+                val tempTracks=audioTrack.toArray(arrayOfNulls<CharSequence>(audioTrack.size))
+                MaterialAlertDialogBuilder(this,R.style.alertDialog)
+                    .setTitle("Select Language")
+                    .setOnCancelListener{playVideo()}
+                    .setBackground(ColorDrawable(0x80000000.toInt()))
+                    .setItems(tempTracks){_, position ->
+                        Toast.makeText(this,audioTrack[position] +" Selected",Toast.LENGTH_SHORT).show()
+                        trackSelector.setParameters(trackSelector.buildUponParameters().setPreferredAudioLanguage(audioTrack[position]))
+                    }
+                    .create()
+                    .show()
+            }
+            bindingMF.subTitleBtn.setOnClickListener {
+                if (isSubTitle){
+                    trackSelector.parameters=DefaultTrackSelector.ParametersBuilder(this).setRendererDisabled(
+                        C.TRACK_TYPE_VIDEO,true
+                    ).build()
+                    Toast.makeText(this,"Sub titles OFF",Toast.LENGTH_SHORT).show()
+                    isSubTitle=false
+                }else{
+                    trackSelector.parameters=DefaultTrackSelector.ParametersBuilder(this).setRendererDisabled(
+                        C.TRACK_TYPE_VIDEO,false
+                    ).build()
+                    Toast.makeText(this,"Sub titles ON",Toast.LENGTH_SHORT).show()
+                    isSubTitle=true
+                }
+                dialog.dismiss()
+                playVideo()
+            }
+            bindingMF.speedBtn.setOnClickListener {
+                dialog.dismiss()
+                playVideo()
+                val customDialogS=LayoutInflater.from(this).inflate(R.layout.speed_dialog,binding.root,false)
+                val bindingS=SpeedDialogBinding.bind(customDialogS)
+                val dialogS=MaterialAlertDialogBuilder(this).setView(customDialogS)
+                    .setCancelable(false)
+                    .setPositiveButton("OK"){self, _->
+                        self.dismiss()
+                    }
+                    .setBackground(ColorDrawable(0x80000000.toInt()))
+                    .create()
+                dialogS.show()
+                bindingS.speedText.text="${DecimalFormat("#.##").format(speed)} X"
+                bindingS.minusBtn.setOnClickListener {
+                    changeSpeed(isIncrement = false)
+                    bindingS.speedText.text="${DecimalFormat("#.##").format(speed)} X"
+                }
+                bindingS.plusBtn.setOnClickListener {
+                    changeSpeed(isIncrement = true)
+                    bindingS.speedText.text="${DecimalFormat("#.##").format(speed)} X"
+                }
+
+            }
+        }
     }
     private fun createPlayer(){
         try { player.release() }catch (e:Exception){Log.d("Error==",e.toString())}
+        speed =1.0f
+        trackSelector=DefaultTrackSelector(this)
         binding.videoTitle.text= playerList[position].title
         binding.videoTitle.isSelected=true
-        player=SimpleExoPlayer.Builder(this).build()
+        player=ExoPlayer.Builder(this).setTrackSelector(trackSelector).build()
         binding.playerView.player=player
         val mediaItem=MediaItem.fromUri(playerList[position].artUri)
         player.setMediaItem(mediaItem)
@@ -132,6 +237,7 @@ class PlayerActivity : AppCompatActivity() {
         })
         playInFullScreen(enable = isFullScreen)
         setVisibility()
+
     }
     override fun onDestroy() {
         super.onDestroy()
@@ -189,5 +295,30 @@ class PlayerActivity : AppCompatActivity() {
         binding.topController.visibility=visibility
         binding.bottomController.visibility=visibility
         binding.playPauseBtn.visibility=visibility
+      if(moreTime== 2){
+          binding.rewindBtn.visibility=View.GONE
+          binding.forwardBtn.visibility=View.GONE
+      }else ++moreTime
+    }
+    private fun changeSpeed(isIncrement:Boolean){
+        if (isIncrement){
+            if (speed <= 2.9f){
+                speed +=0.10f
+            }
+        }else{
+            if (speed >0.20f){
+                speed -=0.10f
+            }
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        pauseVideo()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        playVideo()
     }
 }

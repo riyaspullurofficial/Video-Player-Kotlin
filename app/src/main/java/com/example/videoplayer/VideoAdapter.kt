@@ -1,4 +1,5 @@
 package com.example.videoplayer
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.text.format.DateUtils
@@ -8,7 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.videoplayer.databinding.VideoViewBinding
-class VideoAdapter(private val context:Context, private val videoList: ArrayList<Video>,private val isFolder:Boolean=false)
+class VideoAdapter(private val context:Context, private var videoList: ArrayList<Video>, private val isFolder:Boolean=false)
     :RecyclerView.Adapter<VideoAdapter.MyHolder>() {
     class MyHolder(binding: VideoViewBinding):RecyclerView.ViewHolder(binding.root) {
         val title=binding.videoName
@@ -36,6 +37,10 @@ class VideoAdapter(private val context:Context, private val videoList: ArrayList
                     isFolder->{
                         sendIntent(pos = position, ref = "FolderActivity")
                     }
+                    MainActivity.search->{
+
+                        sendIntent(pos = position, ref = "SearchVideos")
+                    }
                     else->{
                         sendIntent(pos = position, ref = "AllVideos")
                     }
@@ -50,5 +55,11 @@ class VideoAdapter(private val context:Context, private val videoList: ArrayList
         val intent=Intent(context,PlayerActivity::class.java)
         intent.putExtra("class",ref)
         ContextCompat.startActivity(context,intent,null)
+    }
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateList(searchList:ArrayList<Video>){
+        videoList= ArrayList()
+        videoList.addAll(searchList)
+        notifyDataSetChanged()
     }
 }

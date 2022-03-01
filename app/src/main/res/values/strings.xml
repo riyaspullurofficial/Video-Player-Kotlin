@@ -35,4 +35,7 @@
     <string name="speed">Speed</string>
     <string name="sleep_timer">Sleep Timer</string>
     <string name="pip_mode">PIP Mode</string>
+    <string name="forward_video">forward Video</string>
+    <string name="rewind_video">Rewind Video</string>
+    <string name="search">Search</string>
 </resources>

@@ -77,6 +77,7 @@
                     app:layout_constraintVertical_bias="0.0" />
 
                 <ImageButton
+                    android:id="@+id/moreFeatures"
                     android:layout_width="52dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="1dp"
@@ -117,21 +118,71 @@
     </com.google.android.exoplayer2.ui.PlayerView>
 
 
-    <ImageButton
-        android:id="@+id/playPause_btn"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:backgroundTint="@android:color/transparent"
-        android:clickable="true"
-        android:contentDescription="@string/play_btn"
-        android:focusable="true"
-        android:src="@drawable/play_icon"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/white" />
+        app:layout_constraintTop_toTopOf="parent">
+        <FrameLayout
+            android:id="@+id/rewindFL"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:foreground="?attr/selectableItemBackground">
+            <ImageButton
+                android:id="@+id/rewindBtn"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:backgroundTint="@android:color/transparent"
+                android:contentDescription="@string/rewind_video"
+                android:src="@drawable/rewind_icon"
+                android:background="@android:color/transparent"
+                app:tint="@color/white"
+                android:clickable="false"
+                android:visibility="gone"/>
+        </FrameLayout>
+        <ImageButton
+            android:id="@+id/playPause_btn"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:backgroundTint="@android:color/transparent"
+            android:clickable="true"
+            android:contentDescription="@string/play_btn"
+            android:focusable="true"
+            android:src="@drawable/play_icon"
+            app:tint="@color/white"
+            android:foreground="?attr/selectableItemBackground"
+            tools:ignore="UnusedAttribute" />
+        <FrameLayout
+            android:id="@+id/forwardFL"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="50sp"
+            android:layout_weight="1"
+            android:foreground="?attr/selectableItemBackground"
+            tools:ignore="RtlHardcoded,RtlSymmetry">
+            <ImageButton
+                android:id="@+id/forwardBtn"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:backgroundTint="@android:color/transparent"
+                android:contentDescription="@string/forward_video"
+                android:src="@drawable/forward_icon"
+                app:tint="@color/white"
+                android:background="@android:color/transparent"
+                android:clickable="false"
+                android:visibility="gone"/>
+        </FrameLayout>
+
+    </LinearLayout>
+
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -23,6 +23,9 @@ class MainActivity : AppCompatActivity() {
     companion object{
         lateinit var videoList: ArrayList<Video>
         lateinit var folderList:ArrayList<Folder>
+
+        lateinit var searchList:ArrayList<Video>
+        var search:Boolean=false
     }
     lateinit var swipeRefreshLayout: SwipeRefreshLayout
     lateinit var binding:ActivityMainBinding

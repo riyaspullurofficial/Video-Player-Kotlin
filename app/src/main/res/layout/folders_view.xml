@@ -19,7 +19,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         app:shapeAppearanceOverlay="@style/curved"
-        android:tint="@color/cool_pink"
+        android:tint="@color/white"
         android:contentDescription="@string/image"
         android:src="@drawable/ic_folder"
         android:background="@android:color/transparent"

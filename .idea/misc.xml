@@ -6,6 +6,7 @@
         <entry key="../../.gradle/caches/transforms-3/64c79b62437e6acc5d15e196c3e0d4cb/transformed/exoplayer-ui-2.16.1/res/layout/exo_player_control_view.xml" value="0.2046875" />
         <entry key="../../.gradle/caches/transforms-3/64c79b62437e6acc5d15e196c3e0d4cb/transformed/exoplayer-ui-2.16.1/res/layout/exo_player_view.xml" value="0.2046875" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.153" />
+        <entry key="app/src/main/res/drawable/forward_icon.xml" value="0.175" />
         <entry key="app/src/main/res/drawable/fullscreen_icon.xml" value="0.175" />
         <entry key="app/src/main/res/drawable/ic_folder.xml" value="0.153" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.153" />
@@ -16,11 +17,14 @@
         <entry key="app/src/main/res/drawable/play_icon.xml" value="0.175" />
         <entry key="app/src/main/res/drawable/repeat_icon.xml" value="0.175" />
         <entry key="app/src/main/res/drawable/repeate_true_icon.xml" value="0.175" />
+        <entry key="app/src/main/res/drawable/rewind_icon.xml" value="0.175" />
+        <entry key="app/src/main/res/drawable/ripple_effect.xml" value="0.175" />
         <entry key="app/src/main/res/drawable/scrollbar_icon.xml" value="0.153" />
         <entry key="app/src/main/res/drawable/theme_icon.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_folders.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_player.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/booster.xml" value="0.2046875" />
         <entry key="app/src/main/res/layout/custom_control_view.xml" value="0.2046875" />
         <entry key="app/src/main/res/layout/folders_view.xml" value="0.18541666666666667" />
         <entry key="app/src/main/res/layout/fragment_floder.xml" value="0.19270833333333334" />
@@ -28,10 +32,13 @@
         <entry key="app/src/main/res/layout/fragment_video.xml" value="0.2078125" />
         <entry key="app/src/main/res/layout/more_feature.xml" value="0.2046875" />
         <entry key="app/src/main/res/layout/nav_header.xml" value="0.2078125" />
+        <entry key="app/src/main/res/layout/speed_dialog.xml" value="0.2046875" />
         <entry key="app/src/main/res/layout/video_view.xml" value="0.2078125" />
+        <entry key="app/src/main/res/menu-v26/bottom_nav.xml" value="0.2046875" />
         <entry key="app/src/main/res/menu-v26/navigation_menu.xml" value="0.2078125" />
         <entry key="app/src/main/res/menu/bottom_nav.xml" value="0.2078125" />
         <entry key="app/src/main/res/menu/navigation_menu.xml" value="0.2078125" />
+        <entry key="app/src/main/res/menu/search_view.xml" value="0.2046875" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.181" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.181" />
       </map>
