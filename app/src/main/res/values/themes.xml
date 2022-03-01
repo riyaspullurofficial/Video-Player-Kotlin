@@ -14,10 +14,12 @@
         <!-- Customize your theme here. -->
     </style>
 
-        //custom theme
+    //custom theme
+
     <style name="customThemecoolpinkNav" parent="Theme.MaterialComponents.Light">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/black</item> // nav header background
+        <item name="colorPrimary">@color/black</item>
+        // nav header background
         <item name="android:textColorPrimary">@color/white</item>
         <item name="colorPrimaryVariant">@color/black</item>// UAPPer size time color
         <item name="colorOnPrimary">@color/black</item>
@@ -30,9 +32,11 @@
         <!-- Customize your theme here. -->
         <item name="android:forceDarkAllowed" tools:ignore="NewApi">false</item>
     </style>
+
     <style name="playerActivityTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/black</item> // nav header background
+        <item name="colorPrimary">@color/black</item>
+        // nav header background
         <item name="android:textColorPrimary">@color/white</item>
         <item name="colorPrimaryVariant">@color/black</item>// UAPPer size time color
         <item name="colorOnPrimary">@color/black</item>
@@ -47,7 +51,17 @@
     </style>
 
     //for dialog language
+
     <style name="alertDialog" parent="Theme.AppCompat.Dialog.Alert">
         <item name="android:textColor">@color/white</item>
     </style>
+
+    <style name="Theme.VideoPlayer.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.VideoPlayer.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.VideoPlayer.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

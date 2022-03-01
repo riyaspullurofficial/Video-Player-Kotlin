@@ -21,10 +21,13 @@
         <entry key="app/src/main/res/drawable/ripple_effect.xml" value="0.175" />
         <entry key="app/src/main/res/drawable/scrollbar_icon.xml" value="0.153" />
         <entry key="app/src/main/res/drawable/theme_icon.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/about.xml" value="0.2046875" />
+        <entry key="app/src/main/res/layout/activity_about_us.xml" value="0.2046875" />
         <entry key="app/src/main/res/layout/activity_folders.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_player.xml" value="0.22" />
         <entry key="app/src/main/res/layout/booster.xml" value="0.2046875" />
+        <entry key="app/src/main/res/layout/content_about_us.xml" value="0.2046875" />
         <entry key="app/src/main/res/layout/custom_control_view.xml" value="0.2046875" />
         <entry key="app/src/main/res/layout/folders_view.xml" value="0.18541666666666667" />
         <entry key="app/src/main/res/layout/fragment_floder.xml" value="0.19270833333333334" />

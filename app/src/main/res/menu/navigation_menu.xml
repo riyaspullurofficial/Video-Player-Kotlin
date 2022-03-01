@@ -1,22 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/feedback"
-
-        android:contentDescription="Feedback"
-        android:title="Feedback"
-        android:icon="@drawable/feedback_icon"/>
-    <item android:id="@+id/themes"
-
-        android:contentDescription="Themes"
-        android:title="Themes"
-        android:icon="@drawable/theme_icon"
-        tools:ignore="HardcodedText" />
-    <item android:id="@+id/sortorder"
-
-        android:contentDescription="Sort Order"
-        android:title="Sort Order"
-        android:icon="@drawable/sort_order_icon"/>
     <item android:id="@+id/about"
 
         android:contentDescription="About"

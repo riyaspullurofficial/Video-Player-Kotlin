@@ -17,6 +17,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VideoPlayer">
         <activity
+            android:name=".AboutUs"
+            android:exported="false"
+            android:label="@string/title_activity_about_us"
+            android:theme="@style/Theme.VideoPlayer.NoActionBar" />
+        <activity
             android:name=".PlayerActivity"
             android:configChanges="uiMode|orientation|screenSize|screenLayout"
             android:exported="false" />
@@ -28,6 +33,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

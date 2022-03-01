@@ -1,6 +1,7 @@
 package com.example.videoplayer
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -60,22 +61,16 @@ class MainActivity : AppCompatActivity() {
         }
         binding.navView.setNavigationItemSelectedListener {
             when(it.itemId){
-                R.id.feedback->{
-                    Toast.makeText(this,"Feedback...!!",Toast.LENGTH_SHORT).show()
-                }
-                R.id.themes->{
-                    Toast.makeText(this,"Themes...!!",Toast.LENGTH_SHORT).show()
-                }
-                R.id.sortorder->{
-                    Toast.makeText(this,"Sort Order...!!",Toast.LENGTH_SHORT).show()
-                }
+
                 R.id.about->{
+                    startActivity(Intent(this,AboutUs::class.java))
+                    finish()
                     Toast.makeText(this,"About...!!",Toast.LENGTH_SHORT).show()
                 }
                 R.id.exit->{
                     Toast.makeText(this,"Exit...!!",Toast.LENGTH_SHORT).show()
-                    finishAffinity();
-                    exitProcess(0);
+                    finishAffinity()
+                    exitProcess(0)
 
                 }
             }
@@ -134,7 +129,6 @@ class MainActivity : AppCompatActivity() {
 
         return super.onOptionsItemSelected(item)
     }
-
     @SuppressLint("Range")
     private fun getAllVideos():ArrayList<Video>{
         val tempList=ArrayList<Video>()
@@ -171,11 +165,15 @@ class MainActivity : AppCompatActivity() {
                     }catch (e:Exception){
                         Log.d("Hello =====",e.toString())
                     }
-
-
                 }while (cursor.moveToNext())
                 cursor?.close()
         return tempList
+    }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finishAffinity()
+        exitProcess(0)
+
     }
 
 
